@@ -4,7 +4,7 @@ let plumber = require('gulp-plumber')
 let autoprefixer = require('gulp-autoprefixer')
 let browserSync = require('browser-sync').create()
 
-gulp.task('browserSync', () => {
+gulp.task( 'browserSync', () => {
     browserSync.init({
         server: {
             baseDir: './src',
@@ -12,8 +12,8 @@ gulp.task('browserSync', () => {
     })
 })
 
-gulp.task('sass', () => { // create a gulp task called sass
-    return gulp.src('./src/sass/**/*.scss')  // tells gulp what files are needed
+gulp.task( 'sass', () => { // create a gulp task called sass
+    return gulp.src( './src/sass/**/*.scss' )  // tells gulp what files are needed
         .pipe(plumber())
         .pipe(sass()) // sends the files through gulp sass
         .pipe(autoprefixer({
@@ -29,8 +29,8 @@ gulp.task('sass', () => { // create a gulp task called sass
 // Gulp watch syntax
 // gulp.watch('files-to-watch', ['tasks', 'to', 'run']); 
 
-gulp.task('watch', ['browserSync'], () => {
-    gulp.watch('./src/sass/**/*.scss', ['sass'])
-    gulp.watch('./src/*.html', browserSync.reload); 
-    gulp.watch('./src/scripts/**/*.js', browserSync.reload); 
+gulp.task( 'watch', [ 'browserSync', 'sass' ], () => {
+    gulp.watch( './src/sass/**/*.scss', ['sass'])
+    gulp.watch( './src/*.html', browserSync.reload); 
+    gulp.watch( './src/scripts/**/*.js', browserSync.reload); 
 })
